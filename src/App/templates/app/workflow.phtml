@@ -1,0 +1,44 @@
+<?php
+$this->headTitle($this->title);
+$workflow = $this->workflow;
+?>
+
+<div class="jumbotron">
+    <h1><?=$this->title?></h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>
+            <a>
+                <i class="fa fa-question"></i> <?=$workflow[2] ?>
+            </a>
+        </h2>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>
+            <a <?=is_array($workflow[1]) ? 'href="' . $this->url('workflow',['name' => $this->routeName, 'path'=>$path . '1']) . '"' : ''?>>
+                <i class="fa fa-thumbs-up"></i> YES
+            </a>
+            <?php if (!is_array($workflow[1])):?>
+            <p><?=$workflow[1]?></p>
+            <?php endif;?>
+        </h2>
+    </div>
+
+    <div class="col-md-6">
+        <h2>
+            <a <?=is_array($workflow[0]) ? 'href="' . $this->url('workflow',['name' => $this->routeName, 'path'=>$path . '0']) . '"' : ''?>>
+                <i class="fa fa-thumbs-down"></i> NO
+            </a>
+            <?php if (!is_array($workflow[0])):?>
+            <p><?=$workflow[0]?></p>
+            <?php endif;?>
+        </h2>
+    </div>
+
+</div>

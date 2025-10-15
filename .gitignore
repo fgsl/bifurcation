@@ -1,0 +1,6 @@
+.phpunit.cache
+.phpunit.cache/
+.vscode
+*.swp
+*.jar
+vendor/
