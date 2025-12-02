@@ -10,6 +10,11 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Model\StorageFactory;
+use App\Model\StorageInterface;
+use App\Model\Workflows;
+use App\Model\WorkflowsFactory;
+
 /**
  * The configuration provider for the App module
  *
@@ -42,7 +47,9 @@ class ConfigProvider
             ],
             'factories'  => [
                 Handler\HomePageHandler::class => Handler\HomePageHandlerFactory::class,
-                Handler\WorkflowHandler::class => Handler\WorkflowHandlerFactory::class
+                Handler\WorkflowHandler::class => Handler\WorkflowHandlerFactory::class,
+                StorageInterface::class => StorageFactory::class,
+                Workflows::class => WorkflowsFactory::class
             ],
         ];
     }

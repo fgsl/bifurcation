@@ -10,19 +10,22 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-class Workflows
+class Workflows implements WorkflowsInterface
 {
-    public static function getNames()
+    private StorageInterface $storage;
+
+    public function __construct(StorageInterface $storage)
     {
-        $names = [];
-        $path = realpath(__DIR__ . '/../../../../');
-        $configFiles = scandir($path . DIRECTORY_SEPARATOR . 'config');
-        foreach($configFiles as $file)
-        {
-            if (str_contains($file, '.workflow.php') && !str_contains($file, '.dist')){
-                $names[] = str_replace('.workflow.php','',$file);
-            }
-        }
-        return $names;
+        $this->storage = $storage;
+    }
+
+    public function getNames(): array
+    {
+        return $this->storage->getNames();
+    }
+
+    public function getStorage(): StorageInterface
+    {
+        return $this->storage;
     }
 }

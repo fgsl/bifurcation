@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace App\Handler;
 
+use App\Model\StorageInterface;
 use App\Model\Tree;
 use App\Model\Workflow;
 use Laminas\Diactoros\Response\HtmlResponse;
@@ -27,7 +28,8 @@ abstract class AbstractWorkflowHandler implements RequestHandlerInterface
 
     public function __construct(
         private readonly RouterInterface $router,
-        private readonly ?TemplateRendererInterface $template = null,
+        private readonly ?TemplateRendererInterface $template,
+        private readonly StorageInterface $storage
     ) {
     }
 
@@ -36,7 +38,7 @@ abstract class AbstractWorkflowHandler implements RequestHandlerInterface
         $data = [];
 
         $params = $this->router->match($request)->getMatchedParams();
-        $this->workflow = Workflow::getInstance($params['name']);
+        $this->workflow = new Workflow($params['name'],$this->storage->getTree($params['name']));
 
         if (!isset($params['path'])){
             $data['path'] = '2';

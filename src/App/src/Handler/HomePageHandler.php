@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace App\Handler;
 
+use App\Model\Workflows;
+use App\Model\WorkflowsInterface;
 use Chubbyphp\Container\MinimalContainer;
 use DI\Container as PHPDIContainer;
 use Laminas\Diactoros\Response\HtmlResponse;
@@ -30,15 +32,14 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 final class HomePageHandler implements RequestHandlerInterface
 {
     public function __construct(
-        private readonly string $containerName,
-        private readonly RouterInterface $router,
+        private readonly WorkflowsInterface $workflows,
         private readonly ?TemplateRendererInterface $template = null
     ) {
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $data = [];
+        $data = ['workflows' => $this->workflows];
         return new HtmlResponse($this->template->render('app::home-page', $data));
     }
 }

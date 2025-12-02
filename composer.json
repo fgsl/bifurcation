@@ -1,26 +1,19 @@
 {
-    "name": "mezzio/mezzio-skeleton",
-    "description": "Laminas mezzio skeleton. Begin developing PSR-15 middleware applications in seconds!",
+    "name": "fgsl/bifurcation",
+    "description": "a support script system",
     "type": "project",
-    "license": "BSD-3-Clause",
+    "license": "LGPLv3",
     "keywords": [
         "laminas",
         "mezzio",
-        "skeleton",
-        "middleware",
-        "psr",
-        "psr-7",
-        "psr-11",
-        "psr-15"
+        "support",
+        "script"
     ],
-    "homepage": "https://mezzio.dev",
+    "homepage": "https://github.com/fgsl/bifurcation",
     "support": {
-        "docs": "https://docs.mezzio.dev/mezzio/",
-        "issues": "https://github.com/mezzio/mezzio-skeleton/issues",
-        "source": "https://github.com/mezzio/mezzio-skeleton",
-        "rss": "https://github.com/mezzio/mezzio-skeleton/releases.atom",
-        "chat": "https://laminas.dev/chat",
-        "forum": "https://discourse.laminas.dev"
+        "docs": "https://github.com/fgsl/bifurcation",
+        "issues": "https://github.com/fgsl/bifurcation/issues",
+        "source": "https://github.com/fgsl/bifurcation"
     },
     "config": {
         "sort-packages": true,
@@ -28,9 +21,6 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "composer/package-versions-deprecated": true,
             "laminas/laminas-component-installer": true
-        },
-        "platform": {
-            "php": "8.1.99"
         }
     },
     "extra": {
@@ -46,17 +36,19 @@
         }
     },
     "require": {
-        "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4",
+        "php": "~8.3.0 || ~8.4 || ~8.5",
+        "ext-mongodb": "*",
+        "ext-xml": "*",
         "composer/package-versions-deprecated": "^1.11.99.5",
-        "laminas/laminas-component-installer": "^2.6 || ^3.5",
         "laminas/laminas-config-aggregator": "^1.18",
         "laminas/laminas-diactoros": "^3.5.0",
+        "laminas/laminas-servicemanager": "^3.22",
         "laminas/laminas-stdlib": "^3.20",
         "mezzio/mezzio": "^3.20.1",
         "mezzio/mezzio-helpers": "^5.17",
-        "laminas/laminas-servicemanager": "^3.22",
         "mezzio/mezzio-laminasrouter": "^3.9.0",
-        "mezzio/mezzio-laminasviewrenderer": "^2.15"
+        "mezzio/mezzio-laminasviewrenderer": "^2.15",
+        "mongodb/mongodb": "^2.1"
     },
     "require-dev": {
         "filp/whoops": "^2.15.4",

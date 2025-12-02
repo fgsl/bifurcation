@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace AppTest\Handler;
 
 use App\Handler\HomePageHandler;
+use App\Model\WorkflowsInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
 use Mezzio\Router\RouterInterface;
@@ -30,12 +31,12 @@ final class HomePageHandlerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->container = $this->createMock(ContainerInterface::class);
-        $this->router    = $this->createMock(RouterInterface::class);
+        $this->container = require __DIR__ . '/../../../config/container.php';
     }
 
     public function testReturnsHtmlResponseWhenTemplateRendererProvided(): void
     {
+        $workflows = $this->createMock(WorkflowsInterface::class);
         $renderer = $this->createMock(TemplateRendererInterface::class);
         $renderer
             ->expects($this->once())
@@ -44,8 +45,7 @@ final class HomePageHandlerTest extends TestCase
             ->willReturn('');
 
         $homePage = new HomePageHandler(
-            $this->container::class,
-            $this->router,
+            $workflows,
             $renderer
         );
 

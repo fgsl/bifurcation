@@ -11,9 +11,9 @@ use App\Model\Workflows;
 
 <div class="row">
 <?php
-$names = Workflows::getNames();
+$names = $this->workflows->getNames();
 foreach ($names as $index => $name):
-    $workflow = new Workflow($name);
+    $workflow = new Workflow($name,$this->workflows->getStorage()->getTree($name));
 ?>
     <div class="col-md-4">
         <h2>

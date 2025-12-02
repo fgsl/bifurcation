@@ -9,5 +9,9 @@
 
 declare(strict_types=1);
 
+/**
+ * Options for storaging: filesystem or mongodb
+ */
 return [
+    'storage' => 'filesystem'
 ];
