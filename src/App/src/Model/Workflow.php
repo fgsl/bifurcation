@@ -17,24 +17,10 @@ final class Workflow {
     private array $tree;
     private string $name;
 
-    public function __construct(string $name)
+    public function __construct(string $name,array $tree)
     {
-        $fileName = strtolower($name) . '.workflow.php';
-        $path = realpath(__DIR__ . '/../../../../');
-        $path = $path . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . $fileName;
-        if (!file_exists($path)){
-            throw new FileNotFoundException("Workflow file definition $name does not exist");
-        }
         $this->name = $name;
-        $this->tree = include_once $path;
-    }
-
-    public static function getInstance(string $flowName): Workflow
-    {
-        if (self::$instance == null) {
-            self::$instance = new Workflow($flowName);
-        }
-        return self::$instance;
+        $this->tree = $tree;
     }
    
     public function getTitle()

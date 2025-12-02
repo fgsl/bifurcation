@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace App\Handler;
 
+use App\Model\StorageInterface;
 use Mezzio\Router\RouterInterface;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
@@ -33,6 +34,8 @@ abstract class AbstractHandlerFactory
 
         $handlerName = $this->handlerName;
 
-        return new $handlerName($router, $template);
+        $storage = $container->get(StorageInterface::class);
+
+        return new $handlerName($router, $template, $storage);
     }
 }

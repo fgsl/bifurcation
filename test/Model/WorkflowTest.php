@@ -10,16 +10,19 @@ declare(strict_types=1);
 
 namespace AppTest\Model;
 
+use App\Model\FilesystemStorage;
 use App\Model\Tree;
 use App\Model\Workflow;
+use App\Model\Workflows;
 use PHPUnit\Framework\TestCase;
 
 class WorkFlowTest extends TestCase
 {
     public function testWorkflow()
     {
-        $workflow = Workflow::getInstance('sample');
-
+        $workflows = new Workflows(new FilesystemStorage());
+        $workflow = new Workflow('sample',$workflows->getStorage()->getTree('sample'));
+        
         $path = '01';
 
         $tree = Tree::getLevel($workflow->getTree(),$path);

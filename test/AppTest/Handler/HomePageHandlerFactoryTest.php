@@ -19,25 +19,17 @@ use PHPUnit\Framework\TestCase;
 
 final class HomePageHandlerFactoryTest extends TestCase
 {
-    public function testFactoryWithoutTemplate(): void
+    private $container;
+
+    public function setUp():void
     {
-        $container = new InMemoryContainer();
-        $container->setService(RouterInterface::class, $this->createMock(RouterInterface::class));
-
-        $factory  = new HomePageHandlerFactory();
-        $homePage = $factory($container);
-
-        self::assertInstanceOf(HomePageHandler::class, $homePage);
+        $this->container = require __DIR__ . '/../../../config/container.php';
     }
 
     public function testFactoryWithTemplate(): void
     {
-        $container = new InMemoryContainer();
-        $container->setService(RouterInterface::class, $this->createMock(RouterInterface::class));
-        $container->setService(TemplateRendererInterface::class, $this->createMock(TemplateRendererInterface::class));
-
         $factory  = new HomePageHandlerFactory();
-        $homePage = $factory($container);
+        $homePage = $factory($this->container);
 
         self::assertInstanceOf(HomePageHandler::class, $homePage);
     }

@@ -11,7 +11,10 @@ declare(strict_types=1);
 namespace AppTest\Handler;
 
 use App\Handler\WorkflowHandler;
+use App\Model\FilesystemStorage;
 use Laminas\Diactoros\Response\HtmlResponse;
+use Laminas\Diactoros\ServerRequest;
+use Laminas\Diactoros\Uri;
 use Mezzio\Router\RouteResult;
 use Mezzio\Router\RouterInterface;
 use Mezzio\Template\TemplateRendererInterface;
@@ -54,12 +57,15 @@ final class WorkflowHandlerTest extends TestCase
 
         $page = new WorkflowHandler(
             $this->router,
-            $renderer
+            $renderer,
+            new FilesystemStorage()
         );
+
+        $request = (new ServerRequest())
+            ->withMethod('GET')
+            ->withUri(new Uri('https://localhost/workflow/sample/2'));
         
-        $response = $page->handle(
-            $this->createMock(ServerRequestInterface::class)
-        );
+        $response = $page->handle($request);
 
         self::assertInstanceOf(HtmlResponse::class, $response);
     }

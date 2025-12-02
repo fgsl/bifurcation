@@ -1,7 +1,7 @@
 <?php
 return
     [
-        0 => 'Then the problem is with your API, not the Acme API platform. The API development team is responsible. If they need support, contact ANDAT.',
+        0 => 'Then the problem is with your API, not the Acme API platform. The API development team is responsible. If they need support, contact ACME.',
         1 => [
             0 => 'Open an internal request in ALM.',
             1 => 'This means there is no authorization for access. You need to contact the security team to arrange access.',
