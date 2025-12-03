@@ -25,6 +25,9 @@ jobs:
           coverage: none
     - name: Install dependencies
       run: composer update
+
+    - name: Local configuration
+      run: cp config/autoload/local.php.dist config/autoload/bifurcation.local.php
       
     - name: Run tests
       run: vendor/bin/phpunit
